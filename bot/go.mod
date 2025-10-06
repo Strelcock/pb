@@ -1,4 +1,4 @@
-module github.com/Strelcock/pb
+module github.com/Strelcock/pb/bot
 
 go 1.25.1
 
