@@ -1,0 +1,21 @@
+syntax = "proto3";
+
+package grpc;
+
+option go_package = "./pb";
+
+message UserRequest {
+    int64 id = 1;
+    string name = 2;
+    bool isActive = 3;
+}
+
+message UserResponse {
+    string resp = 1;
+}
+
+message Empty {}
+
+service UserService {
+    rpc CreateUser(UserRequest) returns (UserResponse) {}
+}
