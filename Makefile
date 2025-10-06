@@ -4,4 +4,4 @@ push: bot
 	git push https://github.com/Strelcock/pb.git master
 
 bot:
-	make -f ./bot/Makefile all
+	make -f ./bot/Makefile grpc_build
