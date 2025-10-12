@@ -125,6 +125,94 @@ func (x *UserResponse) GetResp() string {
 	return ""
 }
 
+type AdminRequest struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	Id            int64                  `protobuf:"varint,1,opt,name=id,proto3" json:"id,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminRequest) Reset() {
+	*x = AdminRequest{}
+	mi := &file_bot_proto_msgTypes[2]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminRequest) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminRequest) ProtoMessage() {}
+
+func (x *AdminRequest) ProtoReflect() protoreflect.Message {
+	mi := &file_bot_proto_msgTypes[2]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminRequest.ProtoReflect.Descriptor instead.
+func (*AdminRequest) Descriptor() ([]byte, []int) {
+	return file_bot_proto_rawDescGZIP(), []int{2}
+}
+
+func (x *AdminRequest) GetId() int64 {
+	if x != nil {
+		return x.Id
+	}
+	return 0
+}
+
+type AdminResponse struct {
+	state         protoimpl.MessageState `protogen:"open.v1"`
+	IsAdmin       bool                   `protobuf:"varint,1,opt,name=isAdmin,proto3" json:"isAdmin,omitempty"`
+	unknownFields protoimpl.UnknownFields
+	sizeCache     protoimpl.SizeCache
+}
+
+func (x *AdminResponse) Reset() {
+	*x = AdminResponse{}
+	mi := &file_bot_proto_msgTypes[3]
+	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+	ms.StoreMessageInfo(mi)
+}
+
+func (x *AdminResponse) String() string {
+	return protoimpl.X.MessageStringOf(x)
+}
+
+func (*AdminResponse) ProtoMessage() {}
+
+func (x *AdminResponse) ProtoReflect() protoreflect.Message {
+	mi := &file_bot_proto_msgTypes[3]
+	if x != nil {
+		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
+		if ms.LoadMessageInfo() == nil {
+			ms.StoreMessageInfo(mi)
+		}
+		return ms
+	}
+	return mi.MessageOf(x)
+}
+
+// Deprecated: Use AdminResponse.ProtoReflect.Descriptor instead.
+func (*AdminResponse) Descriptor() ([]byte, []int) {
+	return file_bot_proto_rawDescGZIP(), []int{3}
+}
+
+func (x *AdminResponse) GetIsAdmin() bool {
+	if x != nil {
+		return x.IsAdmin
+	}
+	return false
+}
+
 type Empty struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	unknownFields protoimpl.UnknownFields
@@ -133,7 +221,7 @@ type Empty struct {
 
 func (x *Empty) Reset() {
 	*x = Empty{}
-	mi := &file_bot_proto_msgTypes[2]
+	mi := &file_bot_proto_msgTypes[4]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -145,7 +233,7 @@ func (x *Empty) String() string {
 func (*Empty) ProtoMessage() {}
 
 func (x *Empty) ProtoReflect() protoreflect.Message {
-	mi := &file_bot_proto_msgTypes[2]
+	mi := &file_bot_proto_msgTypes[4]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -158,7 +246,7 @@ func (x *Empty) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use Empty.ProtoReflect.Descriptor instead.
 func (*Empty) Descriptor() ([]byte, []int) {
-	return file_bot_proto_rawDescGZIP(), []int{2}
+	return file_bot_proto_rawDescGZIP(), []int{4}
 }
 
 var File_bot_proto protoreflect.FileDescriptor
@@ -171,11 +259,16 @@ const file_bot_proto_rawDesc = "" +
 	"\x04name\x18\x02 \x01(\tR\x04name\x12\x1a\n" +
 	"\bisActive\x18\x03 \x01(\bR\bisActive\"\"\n" +
 	"\fUserResponse\x12\x12\n" +
-	"\x04resp\x18\x01 \x01(\tR\x04resp\"\a\n" +
-	"\x05Empty2D\n" +
+	"\x04resp\x18\x01 \x01(\tR\x04resp\"\x1e\n" +
+	"\fAdminRequest\x12\x0e\n" +
+	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
+	"\rAdminResponse\x12\x18\n" +
+	"\aisAdmin\x18\x01 \x01(\bR\aisAdmin\"\a\n" +
+	"\x05Empty2y\n" +
 	"\vUserService\x125\n" +
 	"\n" +
-	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00B\x06Z\x04./pbb\x06proto3"
+	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00\x123\n" +
+	"\aIsAdmin\x12\x12.grpc.AdminRequest\x1a\x12.grpc.UserResponse\"\x00B\x06Z\x04./pbb\x06proto3"
 
 var (
 	file_bot_proto_rawDescOnce sync.Once
@@ -189,17 +282,21 @@ func file_bot_proto_rawDescGZIP() []byte {
 	return file_bot_proto_rawDescData
 }
 
-var file_bot_proto_msgTypes = make([]protoimpl.MessageInfo, 3)
+var file_bot_proto_msgTypes = make([]protoimpl.MessageInfo, 5)
 var file_bot_proto_goTypes = []any{
-	(*UserRequest)(nil),  // 0: grpc.UserRequest
-	(*UserResponse)(nil), // 1: grpc.UserResponse
-	(*Empty)(nil),        // 2: grpc.Empty
+	(*UserRequest)(nil),   // 0: grpc.UserRequest
+	(*UserResponse)(nil),  // 1: grpc.UserResponse
+	(*AdminRequest)(nil),  // 2: grpc.AdminRequest
+	(*AdminResponse)(nil), // 3: grpc.AdminResponse
+	(*Empty)(nil),         // 4: grpc.Empty
 }
 var file_bot_proto_depIdxs = []int32{
 	0, // 0: grpc.UserService.CreateUser:input_type -> grpc.UserRequest
-	1, // 1: grpc.UserService.CreateUser:output_type -> grpc.UserResponse
-	1, // [1:2] is the sub-list for method output_type
-	0, // [0:1] is the sub-list for method input_type
+	2, // 1: grpc.UserService.IsAdmin:input_type -> grpc.AdminRequest
+	1, // 2: grpc.UserService.CreateUser:output_type -> grpc.UserResponse
+	1, // 3: grpc.UserService.IsAdmin:output_type -> grpc.UserResponse
+	2, // [2:4] is the sub-list for method output_type
+	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
 	0, // [0:0] is the sub-list for extension extendee
 	0, // [0:0] is the sub-list for field type_name
@@ -216,7 +313,7 @@ func file_bot_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_bot_proto_rawDesc), len(file_bot_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   3,
+			NumMessages:   5,
 			NumExtensions: 0,
 			NumServices:   1,
 		},

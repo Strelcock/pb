@@ -14,8 +14,18 @@ message UserResponse {
     string resp = 1;
 }
 
+message AdminRequest {
+    int64 id = 1;
+}
+
+message AdminResponse {
+    bool isAdmin = 1;
+}
+
 message Empty {}
 
 service UserService {
     rpc CreateUser(UserRequest) returns (UserResponse) {}
+    rpc IsAdmin(AdminRequest) returns (UserResponse) {}
 }
+
