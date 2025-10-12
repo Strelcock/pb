@@ -28,7 +28,7 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type UserServiceClient interface {
 	CreateUser(ctx context.Context, in *UserRequest, opts ...grpc.CallOption) (*UserResponse, error)
-	IsAdmin(ctx context.Context, in *AdminRequest, opts ...grpc.CallOption) (*UserResponse, error)
+	IsAdmin(ctx context.Context, in *AdminRequest, opts ...grpc.CallOption) (*AdminResponse, error)
 }
 
 type userServiceClient struct {
@@ -49,9 +49,9 @@ func (c *userServiceClient) CreateUser(ctx context.Context, in *UserRequest, opt
 	return out, nil
 }
 
-func (c *userServiceClient) IsAdmin(ctx context.Context, in *AdminRequest, opts ...grpc.CallOption) (*UserResponse, error) {
+func (c *userServiceClient) IsAdmin(ctx context.Context, in *AdminRequest, opts ...grpc.CallOption) (*AdminResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(UserResponse)
+	out := new(AdminResponse)
 	err := c.cc.Invoke(ctx, UserService_IsAdmin_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
@@ -64,7 +64,7 @@ func (c *userServiceClient) IsAdmin(ctx context.Context, in *AdminRequest, opts 
 // for forward compatibility.
 type UserServiceServer interface {
 	CreateUser(context.Context, *UserRequest) (*UserResponse, error)
-	IsAdmin(context.Context, *AdminRequest) (*UserResponse, error)
+	IsAdmin(context.Context, *AdminRequest) (*AdminResponse, error)
 	mustEmbedUnimplementedUserServiceServer()
 }
 
@@ -78,7 +78,7 @@ type UnimplementedUserServiceServer struct{}
 func (UnimplementedUserServiceServer) CreateUser(context.Context, *UserRequest) (*UserResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method CreateUser not implemented")
 }
-func (UnimplementedUserServiceServer) IsAdmin(context.Context, *AdminRequest) (*UserResponse, error) {
+func (UnimplementedUserServiceServer) IsAdmin(context.Context, *AdminRequest) (*AdminResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method IsAdmin not implemented")
 }
 func (UnimplementedUserServiceServer) mustEmbedUnimplementedUserServiceServer() {}

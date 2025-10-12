@@ -264,11 +264,11 @@ const file_bot_proto_rawDesc = "" +
 	"\x02id\x18\x01 \x01(\x03R\x02id\")\n" +
 	"\rAdminResponse\x12\x18\n" +
 	"\aisAdmin\x18\x01 \x01(\bR\aisAdmin\"\a\n" +
-	"\x05Empty2y\n" +
+	"\x05Empty2z\n" +
 	"\vUserService\x125\n" +
 	"\n" +
-	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00\x123\n" +
-	"\aIsAdmin\x12\x12.grpc.AdminRequest\x1a\x12.grpc.UserResponse\"\x00B\x06Z\x04./pbb\x06proto3"
+	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00\x124\n" +
+	"\aIsAdmin\x12\x12.grpc.AdminRequest\x1a\x13.grpc.AdminResponse\"\x00B\x06Z\x04./pbb\x06proto3"
 
 var (
 	file_bot_proto_rawDescOnce sync.Once
@@ -294,7 +294,7 @@ var file_bot_proto_depIdxs = []int32{
 	0, // 0: grpc.UserService.CreateUser:input_type -> grpc.UserRequest
 	2, // 1: grpc.UserService.IsAdmin:input_type -> grpc.AdminRequest
 	1, // 2: grpc.UserService.CreateUser:output_type -> grpc.UserResponse
-	1, // 3: grpc.UserService.IsAdmin:output_type -> grpc.UserResponse
+	3, // 3: grpc.UserService.IsAdmin:output_type -> grpc.AdminResponse
 	2, // [2:4] is the sub-list for method output_type
 	0, // [0:2] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name

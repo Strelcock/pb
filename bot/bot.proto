@@ -26,6 +26,6 @@ message Empty {}
 
 service UserService {
     rpc CreateUser(UserRequest) returns (UserResponse) {}
-    rpc IsAdmin(AdminRequest) returns (UserResponse) {}
+    rpc IsAdmin(AdminRequest) returns (AdminResponse) {}
 }
 
