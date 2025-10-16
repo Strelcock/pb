@@ -251,7 +251,7 @@ func (*Empty) Descriptor() ([]byte, []int) {
 
 type TrackRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Number        string                 `protobuf:"bytes,1,opt,name=number,proto3" json:"number,omitempty"`
+	Number        []string               `protobuf:"bytes,1,rep,name=number,proto3" json:"number,omitempty"`
 	User          int64                  `protobuf:"varint,2,opt,name=user,proto3" json:"user,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
@@ -287,11 +287,11 @@ func (*TrackRequest) Descriptor() ([]byte, []int) {
 	return file_bot_proto_rawDescGZIP(), []int{5}
 }
 
-func (x *TrackRequest) GetNumber() string {
+func (x *TrackRequest) GetNumber() []string {
 	if x != nil {
 		return x.Number
 	}
-	return ""
+	return nil
 }
 
 func (x *TrackRequest) GetUser() int64 {
@@ -370,7 +370,7 @@ const file_bot_proto_rawDesc = "" +
 	"\aisAdmin\x18\x01 \x01(\bR\aisAdmin\"\a\n" +
 	"\x05Empty\":\n" +
 	"\fTrackRequest\x12\x16\n" +
-	"\x06number\x18\x01 \x01(\tR\x06number\x12\x12\n" +
+	"\x06number\x18\x01 \x03(\tR\x06number\x12\x12\n" +
 	"\x04user\x18\x02 \x01(\x03R\x04user\"?\n" +
 	"\rTrackResponse\x12\x16\n" +
 	"\x06number\x18\x01 \x01(\tR\x06number\x12\x16\n" +

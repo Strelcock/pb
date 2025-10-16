@@ -30,7 +30,7 @@ service UserService {
 }
 
 message TrackRequest {
-    string number = 1;
+    repeated string number = 1;
     int64 user = 2;
 }
 
