@@ -40,7 +40,7 @@ message TrackResponse {
 }
 
 message ToTracker {
-    string number = 1;
+    repeated string number = 1;
 }
 
 service TrackService {
