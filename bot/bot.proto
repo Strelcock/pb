@@ -39,8 +39,13 @@ message TrackResponse {
     string status = 2;
 }
 
+message ToTracker {
+    string number = 1;
+}
+
 service TrackService {
     rpc AddTrack (TrackRequest) returns (TrackResponse) {}
+    rpc ServeTrack (ToTracker) returns (Empty) {}
 }
 
 
