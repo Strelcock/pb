@@ -159,8 +159,7 @@ var UserService_ServiceDesc = grpc.ServiceDesc{
 }
 
 const (
-	TrackService_AddTrack_FullMethodName   = "/grpc.TrackService/AddTrack"
-	TrackService_ServeTrack_FullMethodName = "/grpc.TrackService/ServeTrack"
+	TrackService_AddTrack_FullMethodName = "/grpc.TrackService/AddTrack"
 )
 
 // TrackServiceClient is the client API for TrackService service.
@@ -168,7 +167,6 @@ const (
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
 type TrackServiceClient interface {
 	AddTrack(ctx context.Context, in *TrackRequest, opts ...grpc.CallOption) (*TrackResponse, error)
-	ServeTrack(ctx context.Context, in *ToTracker, opts ...grpc.CallOption) (*Empty, error)
 }
 
 type trackServiceClient struct {
@@ -189,22 +187,11 @@ func (c *trackServiceClient) AddTrack(ctx context.Context, in *TrackRequest, opt
 	return out, nil
 }
 
-func (c *trackServiceClient) ServeTrack(ctx context.Context, in *ToTracker, opts ...grpc.CallOption) (*Empty, error) {
-	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(Empty)
-	err := c.cc.Invoke(ctx, TrackService_ServeTrack_FullMethodName, in, out, cOpts...)
-	if err != nil {
-		return nil, err
-	}
-	return out, nil
-}
-
 // TrackServiceServer is the server API for TrackService service.
 // All implementations must embed UnimplementedTrackServiceServer
 // for forward compatibility.
 type TrackServiceServer interface {
 	AddTrack(context.Context, *TrackRequest) (*TrackResponse, error)
-	ServeTrack(context.Context, *ToTracker) (*Empty, error)
 	mustEmbedUnimplementedTrackServiceServer()
 }
 
@@ -217,9 +204,6 @@ type UnimplementedTrackServiceServer struct{}
 
 func (UnimplementedTrackServiceServer) AddTrack(context.Context, *TrackRequest) (*TrackResponse, error) {
 	return nil, status.Errorf(codes.Unimplemented, "method AddTrack not implemented")
-}
-func (UnimplementedTrackServiceServer) ServeTrack(context.Context, *ToTracker) (*Empty, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method ServeTrack not implemented")
 }
 func (UnimplementedTrackServiceServer) mustEmbedUnimplementedTrackServiceServer() {}
 func (UnimplementedTrackServiceServer) testEmbeddedByValue()                      {}
@@ -260,24 +244,6 @@ func _TrackService_AddTrack_Handler(srv interface{}, ctx context.Context, dec fu
 	return interceptor(ctx, in, info, handler)
 }
 
-func _TrackService_ServeTrack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(ToTracker)
-	if err := dec(in); err != nil {
-		return nil, err
-	}
-	if interceptor == nil {
-		return srv.(TrackServiceServer).ServeTrack(ctx, in)
-	}
-	info := &grpc.UnaryServerInfo{
-		Server:     srv,
-		FullMethod: TrackService_ServeTrack_FullMethodName,
-	}
-	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(TrackServiceServer).ServeTrack(ctx, req.(*ToTracker))
-	}
-	return interceptor(ctx, in, info, handler)
-}
-
 // TrackService_ServiceDesc is the grpc.ServiceDesc for TrackService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
@@ -289,9 +255,107 @@ var TrackService_ServiceDesc = grpc.ServiceDesc{
 			MethodName: "AddTrack",
 			Handler:    _TrackService_AddTrack_Handler,
 		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "bot.proto",
+}
+
+const (
+	Tracker_ServeTrack_FullMethodName = "/grpc.Tracker/ServeTrack"
+)
+
+// TrackerClient is the client API for Tracker service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type TrackerClient interface {
+	ServeTrack(ctx context.Context, in *ToTracker, opts ...grpc.CallOption) (*Empty, error)
+}
+
+type trackerClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewTrackerClient(cc grpc.ClientConnInterface) TrackerClient {
+	return &trackerClient{cc}
+}
+
+func (c *trackerClient) ServeTrack(ctx context.Context, in *ToTracker, opts ...grpc.CallOption) (*Empty, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(Empty)
+	err := c.cc.Invoke(ctx, Tracker_ServeTrack_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// TrackerServer is the server API for Tracker service.
+// All implementations must embed UnimplementedTrackerServer
+// for forward compatibility.
+type TrackerServer interface {
+	ServeTrack(context.Context, *ToTracker) (*Empty, error)
+	mustEmbedUnimplementedTrackerServer()
+}
+
+// UnimplementedTrackerServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedTrackerServer struct{}
+
+func (UnimplementedTrackerServer) ServeTrack(context.Context, *ToTracker) (*Empty, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ServeTrack not implemented")
+}
+func (UnimplementedTrackerServer) mustEmbedUnimplementedTrackerServer() {}
+func (UnimplementedTrackerServer) testEmbeddedByValue()                 {}
+
+// UnsafeTrackerServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to TrackerServer will
+// result in compilation errors.
+type UnsafeTrackerServer interface {
+	mustEmbedUnimplementedTrackerServer()
+}
+
+func RegisterTrackerServer(s grpc.ServiceRegistrar, srv TrackerServer) {
+	// If the following call pancis, it indicates UnimplementedTrackerServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&Tracker_ServiceDesc, srv)
+}
+
+func _Tracker_ServeTrack_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ToTracker)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(TrackerServer).ServeTrack(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: Tracker_ServeTrack_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(TrackerServer).ServeTrack(ctx, req.(*ToTracker))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// Tracker_ServiceDesc is the grpc.ServiceDesc for Tracker service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var Tracker_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "grpc.Tracker",
+	HandlerType: (*TrackerServer)(nil),
+	Methods: []grpc.MethodDesc{
 		{
 			MethodName: "ServeTrack",
-			Handler:    _TrackService_ServeTrack_Handler,
+			Handler:    _Tracker_ServeTrack_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},

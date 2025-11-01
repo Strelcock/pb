@@ -424,9 +424,10 @@ const file_bot_proto_rawDesc = "" +
 	"\vUserService\x125\n" +
 	"\n" +
 	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00\x124\n" +
-	"\aIsAdmin\x12\x12.grpc.AdminRequest\x1a\x13.grpc.AdminResponse\"\x002s\n" +
+	"\aIsAdmin\x12\x12.grpc.AdminRequest\x1a\x13.grpc.AdminResponse\"\x002E\n" +
 	"\fTrackService\x125\n" +
-	"\bAddTrack\x12\x12.grpc.TrackRequest\x1a\x13.grpc.TrackResponse\"\x00\x12,\n" +
+	"\bAddTrack\x12\x12.grpc.TrackRequest\x1a\x13.grpc.TrackResponse\"\x0027\n" +
+	"\aTracker\x12,\n" +
 	"\n" +
 	"ServeTrack\x12\x0f.grpc.ToTracker\x1a\v.grpc.Empty\"\x00B\x06Z\x04./pbb\x06proto3"
 
@@ -457,11 +458,11 @@ var file_bot_proto_depIdxs = []int32{
 	0, // 0: grpc.UserService.CreateUser:input_type -> grpc.UserRequest
 	2, // 1: grpc.UserService.IsAdmin:input_type -> grpc.AdminRequest
 	5, // 2: grpc.TrackService.AddTrack:input_type -> grpc.TrackRequest
-	7, // 3: grpc.TrackService.ServeTrack:input_type -> grpc.ToTracker
+	7, // 3: grpc.Tracker.ServeTrack:input_type -> grpc.ToTracker
 	1, // 4: grpc.UserService.CreateUser:output_type -> grpc.UserResponse
 	3, // 5: grpc.UserService.IsAdmin:output_type -> grpc.AdminResponse
 	6, // 6: grpc.TrackService.AddTrack:output_type -> grpc.TrackResponse
-	4, // 7: grpc.TrackService.ServeTrack:output_type -> grpc.Empty
+	4, // 7: grpc.Tracker.ServeTrack:output_type -> grpc.Empty
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -482,7 +483,7 @@ func file_bot_proto_init() {
 			NumEnums:      0,
 			NumMessages:   8,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   3,
 		},
 		GoTypes:           file_bot_proto_goTypes,
 		DependencyIndexes: file_bot_proto_depIdxs,

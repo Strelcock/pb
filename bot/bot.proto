@@ -45,6 +45,9 @@ message ToTracker {
 
 service TrackService {
     rpc AddTrack (TrackRequest) returns (TrackResponse) {}
+}
+
+service Tracker {
     rpc ServeTrack (ToTracker) returns (Empty) {}
 }
 
