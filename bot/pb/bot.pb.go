@@ -355,7 +355,7 @@ func (x *TrackResponse) GetStatus() string {
 
 type ToTracker struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	Number        []string               `protobuf:"bytes,1,rep,name=number,proto3" json:"number,omitempty"`
+	Number        string                 `protobuf:"bytes,1,opt,name=number,proto3" json:"number,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -390,11 +390,11 @@ func (*ToTracker) Descriptor() ([]byte, []int) {
 	return file_bot_proto_rawDescGZIP(), []int{7}
 }
 
-func (x *ToTracker) GetNumber() []string {
+func (x *ToTracker) GetNumber() string {
 	if x != nil {
 		return x.Number
 	}
-	return nil
+	return ""
 }
 
 var File_bot_proto protoreflect.FileDescriptor
@@ -420,7 +420,7 @@ const file_bot_proto_rawDesc = "" +
 	"\x06number\x18\x01 \x01(\tR\x06number\x12\x16\n" +
 	"\x06status\x18\x02 \x01(\tR\x06status\"#\n" +
 	"\tToTracker\x12\x16\n" +
-	"\x06number\x18\x01 \x03(\tR\x06number2z\n" +
+	"\x06number\x18\x01 \x01(\tR\x06number2z\n" +
 	"\vUserService\x125\n" +
 	"\n" +
 	"CreateUser\x12\x11.grpc.UserRequest\x1a\x12.grpc.UserResponse\"\x00\x124\n" +
